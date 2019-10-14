@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    restart: always
+    container_name: db
+    ports:
+      - "5435:5432"
+
+  nginx:
+    restart: always
+    container_name: nginx_server
+    build: ./nginx
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

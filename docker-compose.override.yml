@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    command: ["./entrypoint.sh"]
+    container_name: backend
+    environment:
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+    expose:
+      - 8000
+    volumes:
+      - ./backend:/app
+      - static_volume:/app/staticfiles
+      - media_volume:/app/mediafiles
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    command: "yarn start"
+    container_name: frontend
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    expose:
+      - 3000
+    volumes:
+      - './frontend:/app'
+      - /app/node_modules
+
+volumes:
+  static_volume:
+  media_volume:

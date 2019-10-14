@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    command: ["./entrypoint.sh"]
+    container_name: backend
+    environment:
+      - PRODUCTION='true'
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+    expose:
+      - 8000
+    volumes:
+      - ./backend:/app
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
+
+
+volumes:
+  static_volume:
+  media_volume:
