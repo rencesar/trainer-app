@@ -3,3 +3,5 @@
 .idea
 .Trashes
 /postgres-data/
+
+.env
