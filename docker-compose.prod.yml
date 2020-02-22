@@ -12,6 +12,8 @@ services:
     environment:
       - PRODUCTION='true'
       - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - PG_PASSWORD=${PG_PASSWORD}
+      - PG_USER=${PG_USER}
     expose:
       - 8000
     volumes:

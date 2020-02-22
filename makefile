@@ -14,7 +14,7 @@ ssh-nginx:
 ssh-backend:
 	docker exec -it backend sh
 
-ssh-backend:
+ssh-frontend:
 	docker exec -it frontend sh
 
 ssh-db:

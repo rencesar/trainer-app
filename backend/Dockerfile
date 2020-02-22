@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.7-alpine
+FROM python:3.8-alpine
 
 # set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -27,4 +27,5 @@ COPY ./entrypoint.sh /usr/src/entrypoint.sh
 
 # run entrypoint.sh
 RUN chmod +x /usr/src/entrypoint.sh
+CMD ["sh"]
 ENTRYPOINT ["sh", "/usr/src/entrypoint.sh"]
