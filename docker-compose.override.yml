@@ -11,7 +11,9 @@ services:
     container_name: backend
     environment:
       - SECRET_KEY=${DJANGO_SECRET_KEY}
-      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - SQL_PASSWORD=${PG_PASSWORD}
+      - SQL_USER=${PG_USER}
+      - SQL_DATABASE=${PG_DATABASE}
     expose:
       - 8000
     volumes:
