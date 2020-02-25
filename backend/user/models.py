@@ -60,7 +60,7 @@ class User(AbstractUser):
     username = None
 
     # Personal information
-    national_id = models.CharField(_('identification'), max_length=18, null=False, blank=False, unique=True)
+    national_id = models.CharField(_('identification'), max_length=18, null=True, blank=True)
     email = models.EmailField(_('email address'), max_length=320, unique=True)
     birthday = models.DateField(_('birthday'), null=False, blank=False)
     phone_number = models.CharField(_('phone number'), null=False, blank=False, max_length=15)
