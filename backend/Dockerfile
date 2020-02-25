@@ -25,7 +25,5 @@ RUN pip install --upgrade pip \
 # copy entrypoint.sh
 COPY ./entrypoint.sh /usr/src/entrypoint.sh
 
-# run entrypoint.sh
+# Give entrypoint permitions
 RUN chmod +x /usr/src/entrypoint.sh
-CMD ["sh"]
-ENTRYPOINT ["sh", "/usr/src/entrypoint.sh"]
