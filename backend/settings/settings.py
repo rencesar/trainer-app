@@ -144,3 +144,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 # Authentication
 
 AUTH_USER_MODEL = 'user.User'
+
+
+# Email Settings
+
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY', '')
+
+EMAIL_HOST_USER = 'contact@renatocesar.dev'
