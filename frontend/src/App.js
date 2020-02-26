@@ -1,25 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
+import Login from './Public/Login';
+import Register from './Public/Register';
+import ForgotPassword from './Public/ForgotPassword';
+import AppRoutes from './Auth/AppRoutes';
+import { authenticationService } from './services/authService';
+
+const RestrictedRoute = ({ component: Component, ...rest }) =>
+  <Route
+    {...rest}
+    render={props =>
+      authenticationService.currentUserValue ?
+        <Component {...props} />
+        : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+    }
+  />
 
 function App() {
+  let match = useRouteMatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/register">
+        <Register />
+      </Route>
+      <Route path="/forgot-password">
+        <ForgotPassword />
+      </Route>
+
+      <RestrictedRoute path={`${match.url}`} component={AppRoutes} />
+    </Switch>
+
   );
 }
 
