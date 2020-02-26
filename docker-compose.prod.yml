@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    command: ["./entrypoint.sh"]
+    command: sh ./entrypoint.sh
     container_name: backend
     environment:
       - PRODUCTION='true'
@@ -15,6 +15,7 @@ services:
       - SQL_PASSWORD=${PG_PASSWORD}
       - SQL_USER=${PG_USER}
       - SQL_DATABASE=${PG_DATABASE}
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
     expose:
       - 8000
     volumes:

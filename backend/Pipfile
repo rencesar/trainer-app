@@ -4,11 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+factory_boy = "*"
+model_bakery = "*"
+Faker = "*"
 
 [packages]
 django = "==3.0.3"
-gunicorn= "==20.0.4"
+gunicorn = "==20.0.4"
 djangorestframework = "==3.11.0"
+djangorestframework-simplejwt = "==4.4.0"
+sendgrid = "*"
 
 [requires]
 python_version = "3.8"

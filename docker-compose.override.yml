@@ -7,13 +7,14 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    command: ["./entrypoint.sh"]
+    command: sh ./entrypoint.sh
     container_name: backend
     environment:
       - SECRET_KEY=${DJANGO_SECRET_KEY}
       - SQL_PASSWORD=${PG_PASSWORD}
       - SQL_USER=${PG_USER}
       - SQL_DATABASE=${PG_DATABASE}
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
     expose:
       - 8000
     volumes:
@@ -37,6 +38,17 @@ services:
     volumes:
       - './frontend:/app'
       - /app/node_modules
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    logging:
+      driver: none
 
 volumes:
   static_volume:

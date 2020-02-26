@@ -1,0 +1,21 @@
+[
+  {
+    "model": "user.User",
+    "pk": 1,
+    "fields": {
+      "first_name": "Admin",
+      "last_name": "I am",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "national_id": "11122244455",
+      "email": "admin@admin.com",
+      "password": "pbkdf2_sha256$180000$r8n8rgCqso2n$DrN8em/JjahcDONgH284QiR9q03R7YIIpJXplSM8wBA=",
+      "birthday": "2000-10-10",
+      "phone_number": "+558399999-9999",
+      "sex": "F",
+      "is_athlete": false,
+      "city_id": 1
+    }
+  }
+]
